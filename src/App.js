@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import InfoBox from './InfoBox';
 import Map from "./Map.jsx";
+import Tables from './Tables';
+import {sortData} from "./util";
 function App() {
 
   const [countries, setCountries] = useState([]);
@@ -27,6 +29,8 @@ function App() {
             name: country.country,
             value: country.countryInfo.iso2,
           }));
+          const sortedData = sortData(data);
+          setTableData(sortedData);
           setCountries(countries);
         });
     };
@@ -77,7 +81,7 @@ function App() {
       <Card className="app__right">
         <CardContent >
           <h3>Worldwide Cases by country</h3>
-          <Table countries={tableData} />
+          <Tables countries={tableData} />
 
           <h3>Worldwide new cases</h3>
           {/* Graph */}
